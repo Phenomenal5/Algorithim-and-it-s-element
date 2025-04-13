@@ -1,0 +1,55 @@
+// At this checkpoint, you are asked to write an algorithm that read a sentence, which ends with a point, character by character, and to determine:
+
+// Instructions
+
+// The length of the sentence (the number of characters).
+// The number of words in the sentence (assuming that the words are separated by a single space).
+// The number of vowels in the sentence.
+// You have to keep in mind that: 
+
+// Each character will be treated separately.
+// The last character is the point.
+// Use three variables as counters.
+
+ALGORITHM AnalyzeSentence
+VAR
+    length, words, vowels, i: INTEGER;
+    vowelAlph: CHAR;
+    sentence: STRING;
+    inWord: BOOLEAN;
+    
+    vowelAlph := {'a', 'e', 'i', 'o', 'u', 'A', 'E', 'I', 'O', 'U'};
+    length := 0;
+    words := 0;
+    vowels := 0
+    complete_Word := FALSE
+    sentence:= write("Enter a sentence ending with a period ('.'):")
+BEGIN
+    READ(sentence)
+
+    IF LAST CHARACTER OF sentence != '.' THEN
+        Write("The sentence must end with a period.")
+    ENDIF
+
+    FOR EACH char IN sentence DO
+        length := length + 1
+
+        IF (char := ' ') THEN
+            complete_Word := TRUE
+            words := words + 1
+        ELSE IF (char :!= ' ') THEN
+            IF (char := '.') THEN
+            complete_Word := TRUE
+            words := words + 1
+            END_IF
+        END_IF
+
+        IF char INCLUDES vowelAlph THEN
+            vowels := vowels + 1
+        END_IF
+    END_FOR
+
+    Write("Length of the sentence: ", length)
+    Write("Number of words: ", words)
+    Write("Number of vowels: ", vowels)
+END ALGORITHM
