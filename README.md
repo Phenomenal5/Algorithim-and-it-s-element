@@ -1,22 +1,33 @@
-# 🔠 Sentence Analyzer - JavaScript Challenge
+# 🔤 Sentence Analyzer Algorithm
 
-This project is a simple JavaScript-based sentence analyzer developed as part of a learning checkpoint.
+This repository contains an algorithm designed to analyze a sentence provided by the user and output key statistics.
 
-## 📌 Task Objectives
+## 📌 Objective
 
-The goal of this task is to write an algorithm that reads a sentence (ending with a period) character by character and determines:
+Write an algorithm that processes a sentence (ending with a period `.`) **character by character** and determines:
 
-- 🧮 The **total number of characters** in the sentence.
-- 🧾 The **number of words**, assuming they are separated by single spaces.
-- 🔤 The **number of vowels** in the sentence.
+- 📏 The **length** of the sentence (number of characters)
+- ✍️ The **number of words** in the sentence (assuming words are separated by a single space)
+- 🔠 The **number of vowels** in the sentence
 
-## 🧠 Implementation Details
+## 💡 Approach
 
-- Each character is processed **individually** using a loop.
-- **Three counter variables** are used to track characters, words, and vowels.
-- The sentence must **end with a period (`.`)**.
-- Input is expected from the user using prompt or standard input.
+- Each character is read individually.
+- A set of vowels (`a, e, i, o, u` in both lowercase and uppercase) is used for counting.
+- A simple loop increments counters based on character conditions.
 
+## 📂 Features
+
+- Checks that the sentence ends with a period.
+- Counts:
+  - Total characters (including spaces and punctuation)
+  - Words based on spaces and final period
+  - Vowels from a defined vowel set
+
+
+## 🛠 Technologies Used
+- Pseudocode / Algorithmic Thinking
+- Basic string and character manipulation
 
 ## License
 
