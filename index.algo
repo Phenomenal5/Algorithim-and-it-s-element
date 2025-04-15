@@ -1,55 +1,55 @@
-// At this checkpoint, you are asked to write an algorithm that read a sentence, which ends with a point, character by character, and to determine:
-
-// Instructions
-
-// The length of the sentence (the number of characters).
-// The number of words in the sentence (assuming that the words are separated by a single space).
-// The number of vowels in the sentence.
-// You have to keep in mind that: 
-
-// Each character will be treated separately.
-// The last character is the point.
-// Use three variables as counters.
-
 ALGORITHM AnalyzeSentence
-VAR
-    length, words, vowels, i: INTEGER;
-    vowelAlph: CHAR;
-    sentence: STRING;
-    inWord: BOOLEAN;
+    // Declare and initialize variables
+    VAR
+        length, words, vowels, i: INTEGER;  // Counters for sentence length, word count, and vowel count
+        vowelAlph: SET OF CHAR;             // Set of vowels (both lowercase and uppercase)
+        sentence: STRING;                   // Variable to hold the user input sentence
+        inWord: BOOLEAN;                    // Flag to check if we are currently inside a word
+
+    // Define the set of vowels for easy checking
+    // This set includes both lowercase and uppercase vowels
+    vowelAlph = {'a', 'e', 'i', 'o', 'u', 'A', 'E', 'I', 'O', 'U'};
     
-    vowelAlph := {'a', 'e', 'i', 'o', 'u', 'A', 'E', 'I', 'O', 'U'};
-    length := 0;
-    words := 0;
-    vowels := 0
-    complete_Word := FALSE
-    sentence:= write("Enter a sentence ending with a period ('.'):")
+    // Initialize counters and flags to 0/false
+    length = 0;
+    words = 0;
+    vowels = 0;
+    inWord = FALSE;
+    
+    // Prompt the user to enter a sentence that ends with a period
+    sentence = WRITE("Enter a sentence ending with a period ('.'):")
+    
 BEGIN
+    // Read the input sentence from the user
     READ(sentence)
 
+    // Check if the sentence ends with a period. If not, display an error message.
     IF LAST CHARACTER OF sentence != '.' THEN
-        Write("The sentence must end with a period.")
+        WRITE("The sentence must end with a period.")
     ENDIF
 
+    // Loop through each character in the sentence
     FOR EACH char IN sentence DO
-        length := length + 1
+        // Increment the length counter for each character encountered
+        length = length + 1
 
-        IF (char := ' ') THEN
-            complete_Word := TRUE
-            words := words + 1
-        ELSE IF (char :!= ' ') THEN
-            IF (char := '.') THEN
-            complete_Word := TRUE
-            words := words + 1
-            END_IF
+        // Check if the character is not a space and not a period (i.e., it's part of a word)
+        IF (char != ' ' AND char != '.') THEN
+            inWord = TRUE       // We are inside a word
+
+        ELSE IF ( (char = ' ' OR char = '.') AND inWord = TRUE ) THEN
+            words = words + 1;   // Increase the word counter
+            inWord = FALSE;      // Reset the flag as we are no longer inside a word
         END_IF
 
-        IF char INCLUDES vowelAlph THEN
-            vowels := vowels + 1
+        // Check if the character is a vowel by testing its membership in the vowel set
+        IF char IN vowelAlph THEN
+            vowels = vowels + 1   // Increase the vowel counter
         END_IF
     END_FOR
 
-    Write("Length of the sentence: ", length)
-    Write("Number of words: ", words)
-    Write("Number of vowels: ", vowels)
+    // Output the results: sentence length, number of words, and number of vowels
+    WRITE("Length of the sentence: ", length)
+    WRITE("Number of words: ", words)
+    WRITE("Number of vowels: ", vowels)
 END ALGORITHM
